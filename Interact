@@ -9,7 +9,7 @@ namespace CS415ObjectInteractions
         public InteractEvent GetInteractEvent()
         {
 
-            get
+            get;
             {
                 if (interact == null) interact = new InteractEvent();
                 return interact;
