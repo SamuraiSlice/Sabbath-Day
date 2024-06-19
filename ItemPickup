@@ -1,0 +1,54 @@
+using System;
+namespace CS415ObjectInteractions
+{
+    public class ItemPickup : Monobehaviour
+    {
+
+        public String item;
+        public int amount;
+
+        public Interact pickupFromInteract; 
+
+        private void OnEnable()
+        {
+            Interact check = GetComponent
+            if(check)
+            {
+                pickupFromInteract = check;
+                pickupFromInteract.GetInteractEvent.HasInteracted += InteractPickup;   
+            }
+            else
+            {
+                Interact addComp = this.gameObject.AddComponent<Interact>();
+                pickupFromInteract = addComp;
+                pickupFromInteract.GetInteractEvent.HasInteracted += InteractPickup;   
+
+
+            }
+
+        }
+
+
+        public void InteractPickup()
+        {
+
+            AddItem(pickupFromInteract.GetPlayer);
+
+        }
+
+        public void AddItem(Player player)
+        {
+            
+        }
+
+        private void OnDisable()
+        {
+
+            if(pickupFromInteract)
+            {
+                pickupFromInteract.GetInteractEvent.HasInteracted -= InteractPickup; 
+            }
+        }
+
+    }
+}
