@@ -15,9 +15,9 @@ using UnityEngine;
             var finalmask = layermask0 | layermask3;
 
             RaycastHit hit;
-            Ray ray = Camera.main.ViewPointToRay(new Vector(.5f, .5f, 0));
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
 
-            if (Physics.cast(ray, out hit, 15, finalmask))
+            if (Physics.Raycast(ray, out hit, 15, finalmask))
             {
                 Interact interactScript = hit.transform.GetComponent<Interact>();
                 if (interactScript)
