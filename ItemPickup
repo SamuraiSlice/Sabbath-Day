@@ -1,16 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 using System;
 
     public class ItemPickup : MonoBehaviour
     {
-
-        public String item;
+        public string item;
         public int amount;
 
         public Interact pickupFromInteract; 
 
         private void OnEnable()
         {
-            Interact check = GetComponent;
+            Interact check = GetComponent<Interact>();
             if(check)
             {
                 pickupFromInteract = check;
@@ -22,29 +25,23 @@ using System;
                 pickupFromInteract = addComp;
                 pickupFromInteract.GetInteractEvent.HasInteracted += InteractPickup;   
             }
-
         }
 
-        public void InteractPickup()
+         private void OnDisable()
         {
-
-            AddItem(pickupFromInteract.GetPlayer);
-
-        }
-
-        public void AddItem(Player player)
-        {
-            
-        }
-
-        private void OnDisable()
-        {
-
             if(pickupFromInteract)
             {
                 pickupFromInteract.GetInteractEvent.HasInteracted -= InteractPickup; 
             }
         }
 
-    }
+        public void InteractPickup()
+        {
+            AddItem(pickupFromInteract.GetPlayer);
+        }
 
+        public void AddItem(Player player)
+        {
+            Debug.Log("Added " + item + " item to " + player);
+        }
+    }
